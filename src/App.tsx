@@ -1,8 +1,13 @@
 import React from "react";
 
-
-const App: React.FC=() => {
-  return <h1>哈哈</h1>;
+const App: React.FC = () => {
+  return (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+    </div>
+  );
 };
 
 export default App;
