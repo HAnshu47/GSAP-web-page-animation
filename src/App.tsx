@@ -47,9 +47,6 @@ export default function App() {
               id={link.id}
               style={{
                 width: '100vw',
-                height: '500px',
-                textAlign: 'center',
-                background: 'rgba(17, 236, 17, 0.5)',
               }}
             >
               {React.createElement(link.component)}
