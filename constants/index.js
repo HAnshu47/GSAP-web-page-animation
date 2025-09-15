@@ -178,6 +178,51 @@ const allCocktails = [
 	 "Each cocktail is made with fresh ingredients and a passion for perfecting every pour, whether you're celebrating or simply relaxing.",
  },
 ];
+	const ulList = [
+		{
+			title: 'Most popular cocktails',
+			data: [
+				{
+					title: 'Chapel Hill Shiraz',
+					descript: 'AU | Battle',
+					price: '40',
+				}, {
+					title: 'Caten Malbee',
+					descript: 'AU | Battle',
+					price: '40',
+				}, {
+					title: 'Rhino Pale Ale',
+					descript: 'AU | Battle',
+					price: '40',
+				}, {
+					title: 'Irish Guinness',
+					descript: 'AU | Battle',
+					price: '40',
+				},
+			]
+		}, {
+			title: 'Most loved mocktails:',
+			data: [
+				{
+					title: 'Tropical Bloom',
+					descript: 'US | Battle',
+					price: '40',
+				}, {
+					title: 'Passionfruit Mint',
+					descript: 'US | Battle',
+					price: '40',
+				}, {
+					title: 'Citrus Glow',
+					descript: 'US | Battle',
+					price: '40',
+				}, {
+					title: 'Lavender Fizz',
+					descript: 'US | Battle',
+					price: '40',
+				},
+			]
+		}
+	]
 
 export {
  navLinks,
@@ -190,4 +235,5 @@ export {
  storeInfo,
  socials,
  allCocktails,
+ ulList
 };
