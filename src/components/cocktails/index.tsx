@@ -6,35 +6,28 @@ import { useGSAP } from '@gsap/react'
 
 export default function Index() {
   useGSAP(() => {
-
-    gsap.to("#mojito", {
-      opacity: 0,
-      y: 10,
-      // duration: 6,
-      yoyo: true,
-      stagger: 0.6, // 每个字延迟 0.1 秒
-      ease: "power2.out"
-    },);
-    gsap.from("#text1", {
-      opacity: 0,
-      y: 10,
-      duration: 1,
-      ease: "power2.out",
-    },);
-    gsap.from("#text2", {
-      opacity: 0,
-      y: 10,
-      duration: 1,
-      ease: "power2.out",
-    },);
-
-    gsap.from('.mojito', {
+var tl = gsap.timeline({repeat: 2, repeatDelay: 1});
+    tl.from('.mojito', {
       opacity: 0.5,
       y: -20,
-      duration: 1.8,
-      stagger: 0.3,
+      duration: 1.2,
+      stagger: 0.2,
       ease: "power2.out",
     },);
+    tl.from("#text1", {
+      opacity: 0,
+      y: 10,
+      duration: 1,
+      ease: "power2.out",
+    },);
+    tl.from("#text2", {
+      opacity: 0,
+      y: 10,
+      duration: 1,
+      ease: "power2.out",
+    },);
+
+   
 
   })
   const mojito = 'MOJITO'
