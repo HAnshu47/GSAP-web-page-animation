@@ -9,7 +9,7 @@ import { ulList } from '../../../constants/index'
 import { useMediaQuery } from 'react-responsive'
 
 export default function Index() {
- const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -35,6 +35,23 @@ export default function Index() {
       duration: 1,
       ease: "power2.out",
     });
+
+    const parallaxTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#cocktails',   // 以 #cocktails 元素作为滚动触发区域
+        start: 'top 30%',        // 当 #cocktails 顶部到达视口 30% 的位置时开始动画
+        end: 'bottom 80%',       // 当 #cocktails 底部到达视口 80% 的位置时结束动画
+        scrub: true,             // 让动画和滚动条位置绑定（随滚动进度播放/回退）
+      }
+    })
+
+    parallaxTimeline
+      .from('#c-left-leaf', {
+        x: -100, y: 200 //x：初始在水平方向偏左 100px ，y：初始在垂直方向偏下 100px
+      })
+      .from('#c-right-leaf', {
+        x: 100, y: 100
+      })
 
     const video = videoRef.current as HTMLVideoElement | null;
     let tween: gsap.core.Tween | undefined;
@@ -75,24 +92,27 @@ export default function Index() {
       if (tween) tween.kill();
       if (stInstance) stInstance.kill(true);
     };
+
+
+
   });
 
   const mojito = 'MOJITO';
 
   return (
     <>
-      <div className="w-full  ">
+      <div className="w-full  " id='hero'>
         {/* 第一部分 mojito文字+介绍 */}
         <div className='relative z-10 w-full pointer-events-none'>
           <div className='w-[75%] flex-center flex-col text-center mx-auto flex '>
             <div className='flex'>
               {mojito.split('').map((item, index) => (
-                <p
+                <h1
                   key={index}
                   className='mojito inline text-transparent bg-clip-text bg-gradient-to-b from-white to-[#898989] md:mt-32 mt-20 text-8xl md:text-[15vw] font-modern-negra'
                 >
                   {item}
-                </p>
+                </h1>
               ))}
             </div>
 
@@ -116,50 +136,55 @@ export default function Index() {
             </div>
 
             {/* 两侧叶子 */}
-            <img src={leftLeaf} alt="" className='absolute left-[-10px] top-[-20px] pointer-events-none' />
-            <img src={rightLeaf} alt="" className='absolute right-[-50px] top-[250px] pointer-events-none' />
+            <img src={leftLeaf} alt="" className='left-leaf' />
+            <img src={rightLeaf} alt="" className='right-leaf' />
           </div>
         </div>
 
-        {/* 第二部分 列表 */}
-        <div className='relative z-10 w-[75%] mx-auto flex justify-between mt-[100px]'>
+
+      </div>
+      {/* 第二部分 列表 */}
+      <div id='cocktails'>
+        <div className='list'>
           {ulList.map((item, index) => (
             <div key={index} className='w-1/2'>
-              <h1 className='text-[#fff] text-xl font-modern-negra'>{item.title}</h1>
+              <h2 >{item.title}</h2>
               <ul className='mt-5'>
                 {item.data.map((child, i) => (
-                  <li key={i} className='flex justify-between items-center mr-5 mb-7'>
-                    <div className='flex flex-col '>
-                      <div className='flex gap-5 text-[#e7d393] text-2xl'>{child.title}</div>
-                      <div className='flex gap-5 text-lg'>{child.descript}</div>
+                  <li key={i} >
+                    <div className='flex flex-col gap-2'>
+                      <h3>{child.title}</h3>
+                      <p>{child.descript}</p>
                     </div>
-                    <div className='flex gap-5 font-bold text-lg'>-${child.price}</div>
+                    <span>-${child.price}</span>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
+        <img src={leftLeaf} alt="" id='c-left-leaf' />
+        <img src={rightLeaf} alt="" id='c-right-leaf' />
       </div>
 
       {/* 顶层 noise 背景 */}
       <div className="absolute inset-0 bg-[url('@/asset/images/noise.png')] bg-cover bg-center opacity-70 pointer-events-none z-[999]" />
       <div className="video-section z-0 absolute inset-0 h-screen " >
         {/* 背景视频 */}
-        <video
+        <video className='video'
           ref={videoRef}
           src={input}
           preload="auto"
-          style={{
-            position: "sticky",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "calc(100vh - 120px)",
-            objectFit: "contain",  // 背景填充全屏
-            zIndex: 0,
-            pointerEvents: 'none'
-          }}
+        // style={{
+        //   position: "sticky",
+        //   top: 0,
+        //   left: 0,
+        //   width: "100%",
+        //   height: "calc(100vh - 120px)",
+        //   objectFit: "contain",  // 背景填充全屏
+        //   zIndex: 0,
+        //   pointerEvents: 'none'
+        // }}
         />
       </div>
     </>
