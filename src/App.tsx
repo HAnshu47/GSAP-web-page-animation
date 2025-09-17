@@ -1,7 +1,7 @@
 import React from 'react'
 import { Anchor, ConfigProvider } from 'antd';
 import { navLinks } from '../constants/index';
-import Logo from '../src/asset/images/logo.png'
+import Logo from '/images/logo.png'
 
 export default function App() {
 
@@ -39,7 +39,7 @@ export default function App() {
             }))}
           /></ConfigProvider>
       </div>
-      <div className="mt-[120px]">
+      <div className="">
         {
           navLinks.map((link) => (
             <div

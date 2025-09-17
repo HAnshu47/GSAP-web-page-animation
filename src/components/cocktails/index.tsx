@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import leftLeaf from '@/asset/images/cocktail-left-leaf.png'
-import rightLeaf from '@/asset/images/cocktail-right-leaf.png'
+import leftLeaf from '/images/cocktail-left-leaf.png'
+import rightLeaf from '/images/cocktail-right-leaf.png'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react'
@@ -168,7 +168,7 @@ export default function Index() {
       </div>
 
       {/* 顶层 noise 背景 */}
-      <div className="absolute inset-0 bg-[url('@/asset/images/noise.png')] bg-cover bg-center opacity-70 pointer-events-none z-[999]" />
+      <div className="absolute inset-0 bg-[url('/images/noise.png')] bg-cover bg-center opacity-70 pointer-events-none z-[999]" />
       <div className="video-section z-0 absolute inset-0 h-screen " >
         {/* 背景视频 */}
         <video className='video'

@@ -223,6 +223,13 @@ const allCocktails = [
 			]
 		}
 	]
+	const abtImg = [
+		{imgPath: '/images/abt1.png'},
+		{imgPath: '/images/abt2.png'},
+		{imgPath: '/images/abt3.png'},
+		{imgPath: '/images/abt4.png'},
+		{imgPath: '/images/abt5.png'},
+	]
 
 export {
  navLinks,
@@ -235,5 +242,5 @@ export {
  storeInfo,
  socials,
  allCocktails,
- ulList
+ ulList,abtImg
 };
