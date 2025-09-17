@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { abtImg } from "../../../constants/index";
+import { ConfigProvider, Rate } from 'antd';
 
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
@@ -81,6 +82,17 @@ export default function Index() {
             turns a simple drink into something truly memorable.
           </p>
           <div className="flex gap-2 justify-start">
+            <ConfigProvider
+              theme={{
+                components: {
+                  Rate: {
+                    fontSize: 20, // 使用 fontSize 而不是 starSize
+                  },
+                },
+              }}
+            >
+              <Rate allowHalf disabled defaultValue={4.5} />
+            </ConfigProvider>
             <p className="flex gap-2 items-center bold text-2xl">
               <span>4.5</span>/5
             </p>
