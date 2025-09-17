@@ -1,18 +1,17 @@
-import React from 'react'
+import React from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { useGSAP } from '@gsap/react'
-import { abtImg } from '../../../constants/index'
+import { useGSAP } from "@gsap/react";
+import { abtImg } from "../../../constants/index";
 
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
+
   useGSAP(() => {
+    // 标题动画
     gsap.fromTo(
       "#about-heading",
-      {
-        opacity: 0,
-        y: 50,
-      },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
@@ -20,66 +19,94 @@ export default function Index() {
           trigger: "#about-heading",
           start: "top 80%",
           end: "bottom 20%",
-        }
+        },
       }
-    )
+    );
+
+    // 子内容动画
     gsap.fromTo(
-      ".top-grid",
-      {
-        opacity: 0,
-        y: 50,
-      },
+      ".sub-content",
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         scrollTrigger: {
-          trigger: ".top-grid",
+          trigger: ".sub-content",
           start: "top 80%",
           end: "bottom 20%",
-        }
+        },
       }
-    )
-  })
+    );
+
+    // 图片堆叠动画
+    gsap.fromTo(
+      ".stack-img",
+      {
+        opacity: 0,
+        y: 0,
+        rotation: (i) => gsap.utils.random(-15, 15), // 初始旋转
+        x: (i) => gsap.utils.random(0, 0),        // 初始水平错位
+      },
+      {
+        opacity: 1,
+        y: (i) => -i * 20, // 往上堆叠，有层次感
+        rotation: (i) => gsap.utils.random(-10, 10), // 最终保留一点随机角度
+        x: (i) => i * 15 - 40, // 每张水平错开一点
+        stagger: 0.8,
+        scrollTrigger: {
+          trigger: ".image-stack-container",
+          start: "top top",
+          end: "+=" + abtImg.length * 400,
+          scrub: true,
+          pin: true,
+        },
+      }
+    );
+  });
+
   return (
-    <div id='about'>
-      <div className='content'>
-
-        <div className="md:col-span-8 ">
-          <div className='badge'>Best Cocktails</div>
-
-          <h2 id='about-heading'>Where every detail matters -from muddle to garnish</h2>
+    <div id="about">
+      <div className="content">
+        <div className="md:col-span-8">
+          <div className="badge">Best Cocktails</div>
+          <h2 id="about-heading">
+            Where every detail matters - from muddle to garnish
+          </h2>
         </div>
-        <div className='sub-content'>
-          <p>Every cocktail we serve is a reflection of our obsession with detail — from the first muddle to the final garnish. That care is what turns a simple drink into something truly memorable.</p>
-          <div className='flex gap-2 justify-start'>
-            <p className='flex gap-2 items-center bold text-2xl'>
 
-              <span>
-                4.5
-              </span>/5
+        <div className="sub-content">
+          <p>
+            Every cocktail we serve is a reflection of our obsession with detail
+            — from the first muddle to the final garnish. That care is what
+            turns a simple drink into something truly memorable.
+          </p>
+          <div className="flex gap-2 justify-start">
+            <p className="flex gap-2 items-center bold text-2xl">
+              <span>4.5</span>/5
             </p>
             <p>More than +12000 customers</p>
-
-
           </div>
         </div>
       </div>
-      <div className='top-grid mt-8 '>
-        {
-          abtImg.map((item, index) => (
-            <div key={index}>
-              <div className='noisy' />
-              <img src={item.imgPath} alt="" />
 
-            </div>
-          ))
-        }
-      </div>
-      <div className='top-grid'>
-
+      {/* 图片堆叠区域 */}
+      <div className="image-stack-container relative w-full h-screen flex items-center justify-center overflow-hidden">
+        {abtImg.map((item, index) => (
+          <div
+            key={index}
+            className="stack-img rounded-3xl overflow-hidden h-72 w-[80%]   absolute shadow-lg "
+          >
+            <div className="bg-[url('/images/noise.png')] absolute inset-0 size-full"></div>
+            <img
+              src={item.imgPath}
+              alt=""
+              className="object-cover w-full h-full"
+            />
+          </div>
+        ))}
       </div>
 
 
     </div>
-  )
+  );
 }
