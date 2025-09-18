@@ -102,7 +102,7 @@ export default function Index() {
       </div>
 
       {/* 图片堆叠区域 */}
-      <div className="image-stack-container relative w-full h-screen flex items-center justify-center overflow-hidden">
+      {/* <div className="image-stack-container relative w-full h-screen flex items-center justify-center overflow-hidden">
         {abtImg.map((item, index) => (
           <div
             key={index}
@@ -116,7 +116,7 @@ export default function Index() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
 
 
     </div>
