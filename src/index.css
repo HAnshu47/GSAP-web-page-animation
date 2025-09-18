@@ -200,8 +200,9 @@ body {
                 p {
                     @apply text-lg;
                 }
+                
 
-                div {
+                .my-score-box   {
                     @apply flex flex-col justify-between md:gap-2 gap-5;
 
                     span {

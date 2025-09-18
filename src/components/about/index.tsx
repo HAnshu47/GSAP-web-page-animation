@@ -2,8 +2,8 @@ import React from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { abtImg } from "../../../constants/index";
-import { ConfigProvider, Rate } from 'antd';
+import { abtImg, profileLists } from "../../../constants/index";
+import { Divider, Rate } from 'antd';
 
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
@@ -81,23 +81,29 @@ export default function Index() {
             — from the first muddle to the final garnish. That care is what
             turns a simple drink into something truly memorable.
           </p>
-          <div className="flex gap-2 justify-start">
-            <ConfigProvider
-              theme={{
-                components: {
-                  Rate: {
-                    fontSize: 20, // 使用 fontSize 而不是 starSize
-                  },
-                },
-              }}
-            >
+          <div className=" flex gap-4 items-center">
+
+            <div>
               <Rate allowHalf disabled defaultValue={4.5} />
-            </ConfigProvider>
-            <p className="flex gap-2 items-center bold text-2xl">
-              <span>4.5</span>/5
-            </p>
-            <p>More than +12000 customers</p>
+              <div className="flex gap-2 justify-start my-score-box">
+                <p className="flex gap-2 items-center bold text-2xl ">
+                  <span>4.5</span>/5
+                </p>
+              </div></div>
+              <p className="flex gap-2 items-center bold text-2xl w-[0.5px] h-20 bg-[#DCDCDC]"></p>
+            <div>
+              <div className="flex ">
+                {profileLists.map((item, index) => (
+                  <div key={index} className="flex items-center ml-[-10px]">
+                    <img src={item.imgPath} alt="" />
+                  </div>
+                ))}
+
+              </div>
+            </div>
           </div>
+          <p>More than +12000 customers</p>
+
         </div>
       </div>
 
