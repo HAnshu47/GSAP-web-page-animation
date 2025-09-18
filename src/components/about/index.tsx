@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { abtImg, profileLists } from "../../../constants/index";
+import { abtImg, profileLists, featureLists } from "../../../constants/index";
 import { Divider, Rate } from 'antd';
 
 export default function Index() {
@@ -90,9 +90,9 @@ export default function Index() {
                   <span>4.5</span>/5
                 </p>
               </div></div>
-              <p className="flex gap-2 items-center bold text-2xl w-[0.5px] h-20 bg-[#DCDCDC]"></p>
+            <p className="flex gap-2 items-center bold text-2xl w-[0.5px] h-20 bg-[#DCDCDC]"></p>
             <div>
-              <div className="flex ">
+              <div className="flex  w-full h-full bg-[url('/images/noise.png')] rounded-full p-4" >
                 {profileLists.map((item, index) => (
                   <div key={index} className="flex items-center ml-[-10px]">
                     <img src={item.imgPath} alt="" />
@@ -106,6 +106,36 @@ export default function Index() {
 
         </div>
       </div>
+      <div>
+        {/* 第一行，1：1:2 */}
+        <div className=" grid grid-cols-12 gap-4 mt-10">
+          <div className="col-span-3 w-full h-full rounded-xl ">
+            <img src="/images/abt1.png" alt="" className="object-cover w-full h-full" />
+          </div>
+          <div className="col-span-3  w-full h-full bg-[url('/images/noise.png')] p-4 rounded-xl">
+            <h1> Crafted to lmpress</h1>
+            <ul className="list-disc ">
+              {featureLists.map((item, index) => (
+                <li key={index} className="flex items-center gap-2 text-sm text-sm/8"><img src="/images/check.png" alt="" />{item}</li>
+              ))}
+
+            </ul>
+          </div>
+          <div className="col-span-6 w-full h-full rounded-xl">
+            <img src="/images/abt2.png" alt="" /> </div>
+        </div>
+        {/* 第二行，3:1 */}
+        <div className=" grid grid-cols-12 gap-4 mt-10">
+          <div className="col-span-9 w-full h-full rounded-xl">
+            <img src="/images/abt3.png" alt="" className="object-cover w-full h-full" /> </div>
+          <div className="col-span-3 w-full h-full  rounded-xl">
+            <img src="/images/abt4.png" alt="" className="object-cover w-full h-full" />
+          </div>
+        </div>
+
+      </div>
+
+
 
       {/* 图片堆叠区域 */}
       {/* <div className="image-stack-container relative w-full h-screen flex items-center justify-center overflow-hidden">
