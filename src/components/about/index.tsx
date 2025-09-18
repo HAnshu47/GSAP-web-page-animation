@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { abtImg, profileLists, featureLists } from "../../../constants/index";
-import { Divider, Rate } from 'antd';
+import { Rate } from 'antd';
 
 export default function Index() {
   gsap.registerPlugin(ScrollTrigger);
@@ -63,6 +63,19 @@ export default function Index() {
         },
       }
     );
+    gsap.fromTo(
+      ".grid",
+     { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: ".grid",
+          start: "top 80%",
+          end: "bottom 20%",
+        },
+      }
+    )
   });
 
   return (
