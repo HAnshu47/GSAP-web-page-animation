@@ -2,6 +2,7 @@ import React from 'react'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { goodLists, featureLists } from '../../../constants/index'
+import MojitoType from './mojitoType';
 
 export default function Index() {
   useGSAP(() => {
@@ -25,35 +26,38 @@ export default function Index() {
     tl.to('.masked-img', { scale: 1.3, maskPosition: 'center', maskSize: '400%', duration: 1, ease: 'power1.inOut ' })
   })
   return (
-    <div id='art'>
-      {/* 1.the art 文字 */}
-      <h2 className='will-fade'>The Art</h2>
-      <div className="mask">
-        {/* 2.img +遮照img  */}
-        <div className="cocktail-img mt-15">
-          <img src="/images/under-img.jpg" alt="" className="abs-center masked-img size-full object-contain"
-          />
+    <>
+      <div id='art'>
+        {/* 1.the art 文字 */}
+        <h2 className='will-fade'>The Art</h2>
+        <div className="mask">
+          {/* 2.img +遮照img  */}
+          <div className="cocktail-img mt-15">
+            <img src="/images/under-img.jpg" alt="" className="abs-center masked-img size-full object-contain"
+            />
+          </div>
         </div>
+        <div className="flex justify-between w-full p-10 ">
+          {/* 3.左侧菜单 + 右侧菜单 */}
+          <div className="space-y-4 will-fade left-menu">
+            {goodLists.map((item, index) => (
+              <div key={index} className='flex justify-start items-center'>
+                <img src="/images/check.png" alt="" className='mr-2' />{item}
+              </div>
+            ))}</div>
+          <div className="space-y-4 will-fade right-menu">
+            {featureLists.map((item, index) => (
+              <div key={index} className='flex justify-start items-center'>
+                <img src="/images/check.png" alt="" className='mr-2' />{item}
+              </div>
+            ))}</div>
+        </div>
+
+
+
       </div>
-      <div className="flex justify-between w-full p-10 ">
-        {/* 3.左侧菜单 + 右侧菜单 */}
-        <div className="space-y-4 will-fade left-menu">
-          {goodLists.map((item, index) => (
-            <div key={index} className='flex justify-start items-center'>
-              <img src="/images/check.png" alt="" className='mr-2' />{item}
-            </div>
-          ))}</div>
-        <div className="space-y-4 will-fade right-menu">
-          {featureLists.map((item, index) => (
-            <div key={index} className='flex justify-start items-center'>
-              <img src="/images/check.png" alt="" className='mr-2' />{item}
-            </div>
-          ))}</div>
-      </div>
-
-
-
-      {/* 滚动逐步隐藏1->3-> 放大2 */}
-    </div>
+      {/* 切换菜单 */}
+      <MojitoType />
+    </>
   )
 }
