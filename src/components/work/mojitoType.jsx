@@ -23,21 +23,29 @@ export default function MojitoType() {
 
   // 当 currentCocktail 改变时，触发图片动画
   useEffect(() => {
-      gsap.fromTo(imageRef.current,
-        { x: "-100%", opacity: 0 },   // 初始位置：在左边
-        { x: "0%", opacity: 1, duration: 0.8, ease: "power3.out" }
-      )
+    gsap.fromTo(imageRef.current,
+      { x: "-100%", opacity: 0 },   // 初始位置：在左边
+      { x: "0%", opacity: 1, duration: 0.8, ease: "power3.out" }
+    )
 
-      gsap.fromTo(titleRef.current,
-        { y: 0, opacity: 0 },   // 初始：往下
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
-      )
-      gsap.fromTo(detailsRef.current,
-        { y: 50, opacity: 0 },   // 初始：往下
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
-      )
+    gsap.fromTo(titleRef.current,
+      { y: 0, opacity: 0 },   // 初始：往下
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
+    )
+    gsap.fromTo(detailsRef.current,
+      { y: 50, opacity: 0 },   // 初始：往下
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
+    )
   }, [currentCocktail])
+  const getCocktail = (direction = 1) => {
+    const currentIndex = allCocktails.findIndex(
+      cocktail => cocktail.name === currentCocktail.name
+    )
+    if (currentIndex === -1) return null // 没找到当前项
 
+    const newIndex = (currentIndex + direction + allCocktails.length) % allCocktails.length
+    return allCocktails[newIndex]
+  }
   return (
     <div>
       <div id="menu">
@@ -59,8 +67,27 @@ export default function MojitoType() {
 
         <div className="content">
           <div className="cocktail"></div>
-
-          <img ref={imageRef} src={currentCocktail.image} alt="" />
+          <div className="flex items-center justify-between gap-4 w-full">
+            <span className="flex items-center gap-2">
+              <p className="text-xl">{getCocktail(-1).name}</p>
+              <img
+                src="/images/right-arrow.png"
+                alt=""
+                className='arrow w-auto h-auto cursor-pointer'
+                onClick={() => setCurrentCocktail(getCocktail(-1))}
+              />
+            </span>
+            <span className="flex items-center gap-2">
+              <img
+                src="/images/left-arrow.png"
+                alt=""
+                className='arrow w-auto h-auto cursor-pointer'
+                onClick={() => setCurrentCocktail(getCocktail(1))}
+              />
+              <p className='text-xl'>{getCocktail(1).name}</p>
+            </span>
+          </div>
+          <img ref={imageRef} src={currentCocktail.image} alt="" className="flex-grow" />
 
           <div className="recipe">
             <div className="info">
@@ -73,6 +100,7 @@ export default function MojitoType() {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   )
